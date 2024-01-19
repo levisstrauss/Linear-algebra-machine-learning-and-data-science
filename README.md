@@ -2172,9 +2172,11 @@ char_poly = (A - lambda_ * Matrix.eye(2)).det()
 char_poly
 ```
 
-===============================================================================
+====================================================================================
 
 ---
+
+## Week 1
 
 ### Calculus for machine learning and Data science
 
@@ -2196,3 +2198,167 @@ char_poly
     - Slope = Δx / Δt  
     - Slope of a tangeant at a point is the derivative of the function at that point. dx/dt
 
+    - NB: The derivatives are used to optimized functions such as minimizing and maximizing functions
+          Which is very important in machine learning.
+
+    example: if we want to find a model that best fits the data, we need to calculate the lost function 
+             and minimize it.
+
+    - Linear regression problem: y = mx + b try to predict the price of the house.
+    - Sentiment analysis: try to predict if a given sentence is positive or negative.
+    
+
+
+    - Square loss function: L = (y - y_hat)^2 is very important in machine learning.
+    - The square loss function is used to calculate the error of the model.
+    - The log loss function is used in classification problems.
+
+## Week 2
+   
+### Gradients lesson 1
+
+    - Patial deveritives: The partial derivative of a function of several variables 
+      is its derivative with respect to one of those variables, with the others held 
+      constant (as opposed to the total derivative, in which all variables are allowed to vary). 
+      Partial derivatives are used in vector calculus and differential geometry.
+
+      example: f(x, y) = x^2 + y^2    => we are treating y as a constant
+              df/dx  = 2x + 0
+
+      In this canse when 2x is treating as a constant, the derivative of is 2y
+
+    - If we have f(x, y) = x^2 + y^2 the partial derivative we can have is df/dx = 2x + 0
+        when y is treating as a constant, and df/dy = 0 + 2y when x is treating as a constant.
+
+    - In this way, what is the gradient:
+
+     f(x, y) = x^2 + y^2 => df/dx = 2x + 0 and df/dy = 0 + 2y the gradient is the vector containing
+     the vector [2x, 2y] which is called Vf= [2x, 2y]
+
+    - Example: if Vf= [2x, 2y] the gradient at the point (2, 3) is [4, 6]
+      
+### Gradient Descent Lesson1
+
+    - Gradient descent is an optimization algorithm used to minimize some function by iteratively 
+      moving in the direction of steepest descent as defined by the negative of the gradient. 
+      In machine learning, we use gradient descent to update the parameters of our model.
+
+    - The learning rate is the step we take to reach the minimum of the function.
+    
+    - This is how it works:
+
+     Function: f(x)       Goal: Minimize f(x)
+
+     Step 1: 
+           Define a learning rate a
+           Choose a starting point x0
+     Step 2: Update: xk = xk - 1 - a f'(xk-1)
+     Step 3: Repeat step 2 until you are closer enough to the minimum 
+
+## Week 3: Optimization in Neural Networks and newton method
+
+### Perceptron as linear regression problems
+
+    - regression with a Perceptron: y = w1x1 + w2x2 + b where w1 and w2
+      are the weights of x1 and x2 and b is the bias.
+
+    - Goal: Find weights abd bias that will optimise the prediction
+    - Ex: Reduce the errors in the prediction y using the loss function:
+
+    - The function is the one that is going to tell us how far we are from the 
+      optimal solution.
+
+    - The prediction function: y = w1x1 + w2x2 + b
+    - The loss function: L(y, y_hat) = 1/2(y - y_hat)^2
+    - Goal: Find w1, w2 and b that will give y_hat with the least error Using Gradient Descent.
+
+
+    - NB: The Regression with Perception is a linear regression problem is using the gredient 
+             descent to find the optimal solution and that derivative is using the chain rule.
+
+
+### Perceptron as Classification problems: Binary classification by changing the activation function
+
+    - The activation function is used to determine the output of the neural network like yes or no.
+    - Called the sigmoid function: f(x) = 1 / (1 + e^-z) where z = w1x1 + w2x2 + b
+
+### Classification Problems using Neural Networks:
+    - A neural network is a bunch of perceptrons organized in layers, where the information of one layer
+      is passed to the next layer.
+
+    - Using Gredient Descent to find the optimal solution. we have to take the derivative of the 
+      log loss function with respect to each one of the weights and biases of the neural network.
+
+    - The goal here is to adjust each of the highlighted weights and biases to reduce the loss function L(y, y_hat)
+      and get the optimal solution.
+
+    - backpropagation is a method to update the parameters of a neural network and it 
+      starts in the output layer and finishes in the input layer.
+
+### Newton's Method: Used to find the zeros of a function.
+
+    - Newton's method in one variable: xk+1 = xk - f(xk) / f'(xk)
+
+    - How it works: Goal: Find the zero of f(x)
+        - Step 1: Choose a starting point x0
+        - Step 2: Update: xk+1 = xk - f(xk) / f'(xk)
+        - Step 3: Repeat step 2 until find the root
+
+    - How to use it for optimization: GOal: minimize g(x) => find zero of g'(x)
+        - Step 1: Choose a starting point x0
+        - Step 2: Update: xk+1 = xk - f'(xk) / f''(xk)
+        - Step 3: Repeat step 2 until you are close enough to the minimum
+
+    - The derivative of the derivative is called the second derivative.
+    
+    - Curvature: Concave up or convex when: f''(x) > 0 => local minimum
+    - Curvature: Concave down or concave when: f''(x) < 0 => local maximum
+      
+### Hessian matrix
+
+    - if f(x, y) = x^2 + y^2 then the Hessian matrix is:
+      Vfx'(x, y) = [2, 0] and Vfy''(x, y) = [0, 2]
+    - Then the result is obtained by piling the transposed vectors.
+
+
+    - To know of a matrix is positive or negative, we need to compute the eigenvalues of
+      the hessian matrix.
+  
+    Ex 1: f(x, y) = 2x^2 + 3y^2 - xy
+          H(0, 0) = [[4, -1],
+                     [-1, 6]]
+    
+          - det(H(0.0) - lambda*I) = det([[4 - lambda , -1],
+                                           [-1, 6 - lambda]] 
+             = (4 - lambda)(6 - lambda) - (-1 * -1)
+             = lambda^2 - 10lambda + 23
+              lambda1 = 6.41 and lambda2 = 3.59
+          NB: Since lambda1 > 0 and lambda2 > 0 then the matrix is positive definite
+              because all the eignevalues are positive then the function is concave up
+              and (0, 0) is a local minimum.
+
+    
+    Ex 2: for f(x, y) = -2x^2 + -3y^2 - xy +15
+            H(0, 0) = [[-4, -1],
+                         [-1, -6]]
+        
+            - det(H(0.0) - lambda*I) = det([[-4 - lambda , -1],
+                                             [-1, -6 - lambda]] 
+                 = (-4 - lambda)(-6 - lambda) - (-1 * -1)
+                 = lambda^2 + 10lambda + 23
+                lambda1 = -6.41 and lambda2 = -3.59
+            NB: Since lambda1 < 0 and lambda2 < 0 then the matrix is negative definite
+                because all the eignevalues are negative then the function is concave down
+                and (0, 0) is a local maximum.
+
+
+    - We also have a saddle point:
+   
+      Ex: for f(x,y)= 2x^2 - 2y^2 
+          The gradient is: Vf(x, y) = [4x, -4y]
+          - H(0,0) = [[4, 0],
+                      [0, -4]] where lambda1 = -4 and lambda2 = 4
+
+            NB: Since lambda1 < 0 and lambda2 > 0 then the matrix is indefinite
+                because the eignevalues are negative and positive then the function is a saddle point
+                and (0, 0) is a saddle point.
