@@ -1,4 +1,7 @@
-# Week 1: System of Linear equation
+
+## LINEAR ALGEBRA FOR MACHINE LEARNING AND DATA SCIENCE
+
+## Week 1: System of Linear equation
 
 ### Linear Algebra for Machine Learning and Data Science
     - Two lines of system of linear equations: intecepting point is the unique solution
@@ -2058,7 +2061,7 @@ print(inverse_determinant)
 
     - The length of the basis is called the dimension of the space.
    
-### Eigen bases are very important for PCA
+### Eigen bases are crucial for PCA
     Eigenbasis: An eigenbasis is a special basis that simplifies the representation of 
     a linear transformation. It consists of eigenvectors.
 
@@ -2172,9 +2175,9 @@ char_poly = (A - lambda_ * Matrix.eye(2)).det()
 char_poly
 ```
 
-====================================================================================
 
 ---
+## CALCULUS FOR MACHINE LEARNING
 
 ## Week 1
 
@@ -2362,3 +2365,84 @@ char_poly
             NB: Since lambda1 < 0 and lambda2 > 0 then the matrix is indefinite
                 because the eignevalues are negative and positive then the function is a saddle point
                 and (0, 0) is a saddle point.
+
+
+---
+## PROBABILITY
+
+### Week 1: Introduction to Probability
+    - A probability is the measure of how likely an event is to occur.
+    - Probability is a number between 0 and 1, where 0 indicates impossibility and 1 indicates certainty.
+    - P = (Number of favorable outcomes) / (Total number of possible outcomes)
+    - In probability, an experiment is any process that produces an outcome that is uncertain.
+    - A sample space is the set of all possible outcomes of an experiment.
+
+    - P(A) = (event A occurs) / (total number of possible outcomes)
+
+### Complement of an event 
+   
+    - The complement of an event is the set of outcomes in the sample space that are not included in 
+      the outcomes of the event.
+
+    - if P(A) = 0.7 then P(A') = 1 - P(A) = 1 - 0.7 = 0.3
+
+    - NB: in probability calculation, the OR is related to the addition and the AND is related to the multiplication.
+
+    - Two events are independent if the occurrence of one event does not affect the probability of the other event.
+    - Two events are dependent if the occurrence of one event affects the probability of the other event.
+    - Two sets are disjoint if they have no elements in common.
+
+    - For a disjoint event (Mutually exclusive), P(A U B) = P(A) + P(B)
+    - For a non disjoint event(Non-mutually exclusive), P(A U B) = P(A) + P(B) - P(A ∩ B)
+
+### Independent events 
+    - Two events A and B are independent when the occurrence of one event does not affect the probability of the 
+       the probability of the occurrence of the other event.
+    - Two events A and B are independent if P(A ∩ B) = P(A) * P(B)
+     
+    ex: P(A) = 0.5 and P(B) = 0.3
+        P(A ∩ B) = 0.5 * 0.3 = 0.15
+        P(A ∩ B) = 0.15
+
+    - Flipping a coin twice is an example of independent events.
+      the probability of getting a head will never affect the probability of getting a tail.
+    
+    - What is the probability of getting 10 sixes
+      P(10 sixes) = (1/6)^10 = 0.00000000007776
+
+###  The birthday problem 
+    - The birthday problem is a famous problem in probability that asks how many people need to be in a room 
+      before there is a 50% chance that two of them share the same birthday.
+
+    - Problem statement: You have 30 friends at a party. What do you think is more likely:
+          - That there exist two people with the same birthday?
+          - That no two of them have the same birthday?
+       (Assume the year has 365 days, nobody has a birthday on Feb 29)
+
+    - Solution:
+      - P(2 people have the same birthday) = 1 - P(no two people have the same birthday)
+        - P(no two people have the same birthday) = (365/365) * (364/365) * (363/365) * ... * (336/365)
+        - P(no two people have the same birthday) = 0.293
+        - P(2 people have the same birthday) = 1 - 0.293 = 0.707
+
+
+###  Conditional Probability 
+
+    - Product rule (for independent events): P(A ∩ B) = P(A) * P(B)
+    - Conditional probability is the probability of an event given that another event has occurred.
+    - P(A|B) = P(A ∩ B) / P(B) => Probability of A given B
+    - P(A ∩ B) = P(A|B) * P(B)
+    - P(A ∩ B) = P(B|A) * P(A)
+
+    - Ex: P(A) = 0.5 and P(B) = 0.3
+          P(A ∩ B) = 0.5 * 0.3 = 0.15
+          P(A ∩ B) = 0.15
+
+
+
+### Bayes Theorem
+    - Bayes Theorem is used for spam recognition, medical diagnosis, and many other applications.
+    - Bayes Theorem is a way to find the probability of an event given information about related events.
+    - Bayes theorem formula: P(A|B) = P(B|A) * P(A) / P(B)
+
+
